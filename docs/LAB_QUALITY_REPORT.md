@@ -1,18 +1,18 @@
 # Lab Quality Report
 
 ## Lab: Angular
-## Validated: 2026-01-01
-## Overall Status: PASS
+## Validated: 2026-01-02
+## Overall Status: PASS (Ready for Workshop)
 
 ## Execution Summary
 
-| Stage | Status | Issues |
-|-------|--------|--------|
-| 0 - Setup | ✅ | `npm install` and `npm test` work correctly |
-| 1 - Critique | ✅ | `docs/TEST_ANALYSIS.md` exists with findings |
-| 2 - Create | ✅ | Test files have intentional weaknesses ready for improvement |
-| 3 - Quality Gates | ✅ | Jest thresholds configured, ready for CI setup |
-| 4 - Validation | ✅ | All tests pass, coverage baseline established |
+| Stage | Status | Notes |
+|-------|--------|-------|
+| 0 - Setup | ✅ | `npm install` works without flags, `npm test` passes |
+| 1 - Critique | ✅ | `docs/TEST_ANALYSIS.md` ready with findings |
+| 2 - Create | ⏳ | Tasks intentionally left for students to complete |
+| 3 - Quality Gates | ⏳ | CI artifacts to be created by students in Stage 3 |
+| 4 - Validation | ✅ | All tests pass, baseline coverage established |
 
 ## Baseline Metrics
 
@@ -21,92 +21,75 @@
 | Test Suites | 6 passed |
 | Tests | 50 passed |
 | Statement Coverage | 34.4% |
-| Branch Coverage | 31.97% |
+| Branch Coverage | 25.07% |
 | Function Coverage | 19.01% |
 | Line Coverage | 37.86% |
 
-## Fixes Applied
+## Fixes Applied (This Session)
 
-### Critical (Previously Blocking)
+### Dependency Compatibility
+- ✅ Downgraded Jest from v30 to v29.7.0 (compatible with Angular tooling)
+- ✅ Downgraded @types/jest to v29.5.0
+- ✅ Downgraded jest-preset-angular to v14.5.0
+- ✅ `npm install` now works without `--legacy-peer-deps`
 
-1. ✅ **Golden examples excluded from Jest** - Added `/.golden-examples/` to `testPathIgnorePatterns` in `jest.config.ts`
-2. ✅ **Jest setup fixed** - Changed to `setupZoneTestEnv()` from `jest-preset-angular/setup-env/zone`
-3. ✅ **Coverage thresholds lowered** - Set to 5-10% to allow baseline state to pass
+### Previous Fixes
+- ✅ Golden examples excluded from Jest (`testPathIgnorePatterns`)
+- ✅ Jest setup uses `jest-preset-angular/setup-jest`
+- ✅ Coverage thresholds set low for baseline state
 
-### Convenience Scripts Added
+## Agent/Prompt Status
 
-Added to `package.json`:
-- `npm run test:payment` - Run payment service tests
-- `npm run test:user` - Run user service tests
-- `npm run test:order` - Run order service tests
-- `npm run test:inventory` - Run inventory service tests
-- `npm run test:validators` - Run validator tests
-- `npm run test:flaky` - Run order tests 5 times to detect flakiness
+| Agent/Prompt | Ready | Purpose |
+|--------------|-------|---------|
+| @test-critique | ✅ | Stage 1 - Analyze coverage gaps |
+| @test-create | ✅ | Stage 2 - Generate/refactor tests |
+| @test-quality-gate | ✅ | Stage 3 - Create CI config |
+| @lab-validator | ✅ | Validate lab end-to-end |
+| /coverage-analysis | ✅ | Quick coverage summary |
+| /refactor-to-parameterized | ✅ | Convert to test.each |
+| /fix-flaky-test | ✅ | Fix timing issues |
+| /generate-error-tests | ✅ | Add HTTP error tests |
+| /generate-boundary-tests | ✅ | Add boundary value tests |
 
-## Agent/Prompt Validation
+## Intentional Weaknesses (For Students to Fix)
 
-| Agent/Prompt | Exists | Valid YAML | Notes |
-|--------------|--------|------------|-------|
-| @test-critique | ✅ | ✅ | Ready for Stage 1 |
-| @test-create | ✅ | ✅ | Ready for Stage 2 |
-| @test-quality-gate | ✅ | ✅ | Ready for Stage 3 |
-| @lab-validator | ✅ | ✅ | Can validate labs autonomously |
-| /coverage-analysis | ✅ | ✅ | Quick coverage gap analysis |
-| /refactor-to-parameterized | ✅ | ✅ | Convert to test.each |
-| /fix-flaky-test | ✅ | ✅ | Fix timing issues |
-| /generate-error-tests | ✅ | ✅ | HTTP error tests |
-| /generate-boundary-tests | ✅ | ✅ | 7-point boundary tests |
+| Issue | File | What Students Will Do |
+|-------|------|----------------------|
+| Weak coverage | payment.service.spec.ts | Add tests for all payment methods, errors |
+| Redundant tests | user.service.spec.ts | Refactor to `test.each` |
+| Flaky tests | order.service.spec.ts | Fix with `fakeAsync`/`tick` |
+| Missing tests | notification.service.spec.ts | Add comprehensive tests |
+| Zero coverage | inventory.service.ts | Add signal tests |
 
 ## File Reference Audit
 
-| Referenced Path | Exists | Notes |
-|-----------------|--------|-------|
-| angular/LAB_ACTION_GUIDE.md | ✅ | Guide verified |
-| docs/TEST_ANALYSIS.md | ✅ | Stage 1 output |
-| .golden-examples/ | ✅ | Reference patterns (excluded from tests) |
-| .github/agents/*.agent.md | ✅ | 4 agents configured |
-| .github/prompts/*.prompt.md | ✅ | 5 prompts configured |
+| Path | Exists |
+|------|--------|
+| angular/LAB_ACTION_GUIDE.md | ✅ |
+| docs/TEST_ANALYSIS.md | ✅ |
+| .golden-examples/ | ✅ |
+| .github/agents/*.agent.md | ✅ (4 agents) |
+| .github/prompts/*.prompt.md | ✅ (5 prompts) |
 
-## Golden Examples Audit
+## Command Verification
 
-| Example | Location | Excluded from Tests | Notes |
-|---------|----------|---------------------|-------|
-| Parameterized | .golden-examples/parameterized-tests/ | ✅ | Reference only |
-| HTTP Mocking | .golden-examples/http-mocking/ | ✅ | Reference only |
-| Async Patterns | .golden-examples/async-patterns/ | ✅ | Reference only |
-| Error Handling | .golden-examples/error-handling/ | ✅ | Reference only |
-| Boundary Testing | .golden-examples/boundary-testing/ | ✅ | Reference only |
-| Signal Testing | .golden-examples/signal-testing/ | ✅ | Reference only |
+| Command | Status |
+|---------|--------|
+| `npm install` | ✅ No flags needed |
+| `npm test` | ✅ 50 tests pass |
+| `npm run test:coverage` | ✅ Coverage report generated |
+| `npm run test:payment` | ✅ Targeted test works |
 
-## Intentional Weaknesses Verified
+## Workshop Readiness
 
-| Issue Type | File | Status | Description |
-|------------|------|--------|-------------|
-| Weak coverage | payment.service.spec.ts | ✅ Present | Only credit card happy path tested |
-| Redundant tests | user.service.spec.ts | ✅ Present | Duplicate setup, not parameterized |
-| Flaky tests | order.service.spec.ts | ✅ Present | Timing-dependent tests |
-| Missing tests | notification.service.spec.ts | ✅ Present | Only `should be created` test |
-| Missing tests | inventory.service.ts | ✅ Present | 0% coverage |
+✅ **Angular lab is ready for workshop use**
 
-## Command Execution Log
+Students will:
+1. Run Stage 0 setup commands
+2. Use @test-critique agent for Stage 1 analysis
+3. Use prompts to improve tests in Stage 2
+4. Create CI config in Stage 3
+5. Validate improvements in Stage 4
 
-| Command | Exit Code | Output Summary |
-|---------|-----------|----------------|
-| `npm install` | 0 | Dependencies installed |
-| `npm test` | 0 | 6 suites, 50 tests passed |
-| `npm run test:coverage` | 0 | 34.4% statements, 37.86% lines |
-
-## Recommendations
-
-1. ✅ Lab is ready for use
-2. Students should be able to improve coverage from ~35% to >75%
-3. The `/refactor-to-parameterized` prompt will help with user.service.spec.ts
-4. The `/fix-flaky-test` prompt will help with order.service.spec.ts
-5. The `/generate-error-tests` prompt will help with payment.service.spec.ts
-
-## Next Steps
-
-The Angular lab is validated and ready. To validate the Java lab:
-```
-@lab-validator Validate the Java lab
-```
+Expected outcome: Coverage improvement from ~35% to >75%
