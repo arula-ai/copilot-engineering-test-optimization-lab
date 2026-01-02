@@ -7,9 +7,17 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "test:coverage": "ng test --coverage",
-    "test:watch": "ng test --watch"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:service": "jest --testPathPattern",
+    "test:payment": "jest --testPathPattern=payment.service",
+    "test:user": "jest --testPathPattern=user.service",
+    "test:order": "jest --testPathPattern=order.service",
+    "test:inventory": "jest --testPathPattern=inventory.service",
+    "test:validators": "jest --testPathPattern=validators",
+    "test:flaky": "for i in 1 2 3 4 5; do npm run test:order; done",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
