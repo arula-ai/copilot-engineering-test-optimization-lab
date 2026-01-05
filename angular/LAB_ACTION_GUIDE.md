@@ -37,6 +37,7 @@ Follow these lean steps using the Critique-then-Create methodology. Use the cust
 
 Use **Agent Mode** (default) for setup commands:
 
+- `#runInTerminal cd angular` (navigate to Angular project folder)
 - `#runInTerminal npm install`
 - `#runInTerminal npm test` (verify tests run)
 - `#runInTerminal npm run test:coverage` (establish baseline)

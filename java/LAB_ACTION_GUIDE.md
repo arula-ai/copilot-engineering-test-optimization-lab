@@ -37,6 +37,7 @@ Follow these lean steps using the Critique-then-Create methodology. Use the cust
 
 Use **Agent Mode** (default) for setup commands:
 
+- `#runInTerminal cd java` (navigate to Java project folder)
 - `#runInTerminal mvn clean compile` (verify build)
 - `#runInTerminal mvn test` (verify tests run)
 - `#runInTerminal mvn jacoco:report` (generate baseline coverage)
